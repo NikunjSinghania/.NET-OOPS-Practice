@@ -1,0 +1,18 @@
+C:\Users\nikunjsi\source\repos\OOPS\OOPS\bin\Debug\net8.0\OOPS.exe
+C:\Users\nikunjsi\source\repos\OOPS\OOPS\bin\Debug\net8.0\OOPS.deps.json
+C:\Users\nikunjsi\source\repos\OOPS\OOPS\bin\Debug\net8.0\OOPS.runtimeconfig.json
+C:\Users\nikunjsi\source\repos\OOPS\OOPS\bin\Debug\net8.0\OOPS.dll
+C:\Users\nikunjsi\source\repos\OOPS\OOPS\bin\Debug\net8.0\OOPS.pdb
+C:\Users\nikunjsi\source\repos\OOPS\OOPS\obj\Debug\net8.0\OOPS.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\nikunjsi\source\repos\OOPS\OOPS\obj\Debug\net8.0\OOPS.AssemblyInfoInputs.cache
+C:\Users\nikunjsi\source\repos\OOPS\OOPS\obj\Debug\net8.0\OOPS.AssemblyInfo.cs
+C:\Users\nikunjsi\source\repos\OOPS\OOPS\obj\Debug\net8.0\OOPS.csproj.CoreCompileInputs.cache
+C:\Users\nikunjsi\source\repos\OOPS\OOPS\obj\Debug\net8.0\OOPS.dll
+C:\Users\nikunjsi\source\repos\OOPS\OOPS\obj\Debug\net8.0\refint\OOPS.dll
+C:\Users\nikunjsi\source\repos\OOPS\OOPS\obj\Debug\net8.0\OOPS.pdb
+C:\Users\nikunjsi\source\repos\OOPS\OOPS\obj\Debug\net8.0\OOPS.genruntimeconfig.cache
+C:\Users\nikunjsi\source\repos\OOPS\OOPS\obj\Debug\net8.0\ref\OOPS.dll
+C:\Users\nikunjsi\source\repos\OOPS\OOPS\bin\Debug\net8.0\Check DLL.dll
+C:\Users\nikunjsi\source\repos\OOPS\OOPS\bin\Debug\net8.0\Check DLL.pdb
+C:\Users\nikunjsi\source\repos\OOPS\OOPS\obj\Debug\net8.0\OOPS.csproj.AssemblyReference.cache
+C:\Users\nikunjsi\source\repos\OOPS\OOPS\obj\Debug\net8.0\OOPS.csproj.Up2Date
