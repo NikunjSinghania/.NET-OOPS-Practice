@@ -16,3 +16,5 @@ C:\Users\nikunjsi\source\repos\OOPS\OOPS\bin\Debug\net8.0\Check DLL.dll
 C:\Users\nikunjsi\source\repos\OOPS\OOPS\bin\Debug\net8.0\Check DLL.pdb
 C:\Users\nikunjsi\source\repos\OOPS\OOPS\obj\Debug\net8.0\OOPS.csproj.AssemblyReference.cache
 C:\Users\nikunjsi\source\repos\OOPS\OOPS\obj\Debug\net8.0\OOPS.csproj.Up2Date
+C:\Users\nikunjsi\source\repos\OOPS\OOPS\obj\Debug\net8.0\OOPS.sourcelink.json
+C:\Users\nikunjsi\source\repos\OOPS\OOPS\bin\Debug\net8.0\Newtonsoft.Json.dll
