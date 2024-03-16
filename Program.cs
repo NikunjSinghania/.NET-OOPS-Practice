@@ -8,6 +8,7 @@ using Newtonsoft.Json;
 using System.IO;
 using Newtonsoft.Json.Bson;
 using System.Threading;
+using System.ComponentModel.DataAnnotations;
 
 namespace OOPS {
 
@@ -15,24 +16,90 @@ namespace OOPS {
 
     class Program
     {
+        public static int sum = 0;
+
+        public static object _lock = new object();
         public static void Method_1()
         {
             for (int i = 0; i < 10; i++)
             {
-                Console.WriteLine(i);
-                if (i == 1)
+                Console.WriteLine($"Method_1 : {i}");
+
+                Monitor.Enter(_lock);
+
+                try
                 {
-                    Thread.Sleep(10000);
+                    sum -= 11;
                 }
+                finally
+                {
+                    Monitor.Exit(_lock);
+                }
+
+
+
+                //if (i == 1)
+                //{
+                //    //Interlocked.Increment(ref sum);
+                //lock (_lock)
+                //{
+                //    sum += 10;
+                //}
+                //    //Thread.Sleep(10000);
+                //}
             }
+            Console.WriteLine("Methos_1");
+
         }
 
         public static void Method_2()
         {
             for (int i = 0; i < 10; i++)
             {
+                Console.WriteLine($"Method_2 : {i}");
+
+                Monitor.Enter(_lock);
+
+                try
+                {
+                    sum -= 11;
+                }
+                finally
+                {
+                    Monitor.Exit(_lock);
+                }
+
+
+
+                //Interlocked.Increment(ref sum);
+                //lock (_lock)
+                //{
+                //    sum += 10;
+                //}
+                //Console.WriteLine(Thread.CurrentThread.IsAlive);
+            }
+            Console.WriteLine("Methos_2");
+        }
+
+        public static void Method_3()
+        {
+            Monitor.Enter(_lock);
+            for(int i = 0;i < 10;i++)
+            {
+                Monitor.Pulse(_lock);
                 Console.WriteLine(i);
-                Console.WriteLine(Thread.CurrentThread.IsAlive);
+                Monitor.Wait(_lock);
+            }
+        }
+
+        public static void Method_4()
+        {
+            Monitor.Enter(_lock);
+            for (int i = 20; i < 30; i++)
+            {
+                Monitor.Pulse(_lock);
+                Console.WriteLine(i);
+                Monitor.Wait(_lock);
             }
         }
 
@@ -40,41 +107,190 @@ namespace OOPS {
         {
             Console.WriteLine($"Sum : {sum}");
         }
+
+
+
+
+
+
+
+         
+
+
+        public static void SeedData(string binaryFile)
+        {
+            if (!File.Exists(binaryFile))
+            {
+                Binary_File_Handling emp1 = new Binary_File_Handling { Id = 1001, FirstName = "Nikunj", LastName = "Singhania", gender = 'M', isManger = false, Salary = 100 };
+                Binary_File_Handling emp2 = new Binary_File_Handling { Id = 1002, FirstName = "Nikunj", LastName = "Singhania", gender = 'M', isManger = false, Salary = 200 };
+                Binary_File_Handling emp3 = new Binary_File_Handling { Id = 1003, FirstName = "Nikunj", LastName = "Singhania", gender = 'M', isManger = false, Salary = 300 };
+
+                using (BinaryWriter writer = new BinaryWriter(new FileStream(binaryFile, FileMode.Create)))
+                {
+                    AddEmployeeRecird(writer, emp1);
+                    AddEmployeeRecird(writer, emp2);
+                    AddEmployeeRecird(writer, emp3);
+                }
+            }
+        }
+
+        public static void AddEmployeeRecird(BinaryWriter writer, Binary_File_Handling emp)
+        {
+            writer.Write(emp.Id);
+            writer.Write(emp.FirstName);
+            writer.Write(emp.LastName);
+            writer.Write(emp.Salary);
+            writer.Write(emp.gender);
+            writer.Write(emp.isManger);
+        }
+        static ManualResetEvent _mre = new ManualResetEvent(false);
+
+        public static void write()
+        {
+            Console.WriteLine("Write Started");
+            _mre.Reset();
+            Thread.Sleep(10000);
+
+            Console.WriteLine("Write Ended");
+            _mre.Set();
+
+        }
+
+        public static void read()
+        {
+            Console.WriteLine("read Started");
+            _mre.WaitOne();
+            Console.WriteLine("read Ended");
+        }
+
+
         static void Main(string[] args)
         {
 
+            ParallelStreaming.Check();
+
+
+            //int length = 10;
+            //int sum1 = 0;
+            //int sum2 = 0;
+
+
+            //Stopwatch S1 = Stopwatch.StartNew();
+
+            //for (int i=0;i< length; i++)
+            //{
+            //    Console.WriteLine($"Value : {i} with {Thread.CurrentThread.ManagedThreadId}");
+            //    Thread.Sleep(100);
+            //}
+            //S1.Stop();
+
+            //Console.WriteLine(S1.ElapsedMilliseconds);
+
+            //ParallelOptions _option = new ParallelOptions()
+            //{
+            //    MaxDegreeOfParallelism = 1
+            //};
+
+            //S1 = Stopwatch.StartNew();
+            //Parallel.For(0, length, _option, (count, _breakCount) =>
+            //{
+            //    if(count == 5)
+            //    {
+            //        _breakCount.Break();
+            //    }
+            //    Console.WriteLine($"Value : {count} with {Thread.CurrentThread.ManagedThreadId}");
+            //    Thread.Sleep(100);
+
+            //});
+            //S1.Stop();
+
+
+            //Console.WriteLine(S1.ElapsedMilliseconds);
+
+
+            //Parallel.Invoke(
+            //    _option,
+            //    () => { Console.WriteLine($"Invoke 1 : {Thread.CurrentThread.ManagedThreadId}"); },
+            //    () => { Console.WriteLine($"Invoke 2 : {Thread.CurrentThread.ManagedThreadId}"); }
+            //);
 
 
 
 
 
 
-            Thread T = Thread.CurrentThread;
-            T.Name = "Main Thread";
-            
-            Console.WriteLine(T.Name);
-            Console.WriteLine(Thread.CurrentThread.Name);
-            
-            Thread One = new Thread(Method_1)
-            {
-                Name = "First"
-            };
-            Thread Two = new Thread(Method_2)
-            {
-                Name = "Second"
-            };
-            
-            One.Start();
-            
-            Two.Start();
+            //Thread T1 = new Thread(write);
+            //T1.Start();
+
+            //for(int i=0;i<5;i++)
+            //{
+            //    Console.WriteLine(i);
+            //    new Thread(read).Start();
+            //}
 
 
-            One.Join(1000);
-            Console.WriteLine("One Completed");
+
+            //int reSize = sizeof(int) + ((Binary_File_Handling.NameSize + 1) * 2) + sizeof(decimal) + (sizeof(char) - 1) + sizeof(bool);
 
 
-            Two.Join();
-            Console.WriteLine("Two Completed");
+
+            //string binaryFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Employee.dat");
+
+
+
+
+            //SeedData(binaryFile);
+
+
+            //BinaryReader br = new BinaryReader(new FileStream("Employee.dat", FileMode.Open));
+            //Console.WriteLine(br.ReadInt32().ToString().PadRight(7, '_'));
+
+
+
+
+
+
+            //StreamLearning.RunFun();
+            //
+            //File_handling_1 F = new File_handling_1("Hello.txt");
+            //string[] s;
+            //s =[ "Hello", "CWorld", "Aer" ];
+            //F.WriteTextToFile(s);
+            //Console.WriteLine(F.ReadTextFromFile());
+            //
+            //
+            //File_Handling_2.FileH();
+
+
+            //Thread T = Thread.CurrentThread;
+            //T.Name = "Main Thread";
+            //
+            //Console.WriteLine(T.Name);
+            //Console.WriteLine(Thread.CurrentThread.Name);
+            //
+            //Thread One = new Thread(Method_3)
+            //{
+            //    Name = "First"
+            //};
+            //Thread Two = new Thread(Method_4)
+            //{
+            //    Name = "Second"
+            //};
+            //
+            //One.Start();
+            //
+            //Two.Start();
+            //
+            //
+            //One.Join();
+            //Console.WriteLine("One Completed");
+            //
+            //
+            ////Two.Join();
+            //Console.WriteLine("Two Completed");
+
+            //Console.WriteLine(sum);
+
             //
             //ThreadStart obj = new ThreadStart(() => { Console.WriteLine("'Sleep Started ThreadStart'"); Thread.Sleep(10000);  Console.WriteLine("'CHECK'"); });
             //Thread Three = new Thread(obj);
@@ -202,7 +418,7 @@ namespace OOPS {
             //Console.WriteLine(watch_2.ElapsedMilliseconds);
         }
 
-        
+
     }
 
     class Helper
