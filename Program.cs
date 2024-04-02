@@ -9,6 +9,8 @@ using System.IO;
 using Newtonsoft.Json.Bson;
 using System.Threading;
 using System.ComponentModel.DataAnnotations;
+using System.IO.Compression;
+using OOPS.LearningOOPS;
 
 namespace OOPS {
 
@@ -163,11 +165,198 @@ namespace OOPS {
             Console.WriteLine("read Ended");
         }
 
+        static async void GET()
+        {
+            HttpClient client = new HttpClient();
+
+            HttpResponseMessage R = await client.GetAsync("https://api.github.com/");
+            Console.WriteLine(await R.Content.ReadAsStringAsync());
+        }
 
         static void Main(string[] args)
         {
 
-            ParallelStreaming.Check();
+            #region OOPS Practice
+                
+            Classes_Objects Data = new Classes_Objects();
+
+            Data.setData(1, "Nikunj Singhania");
+
+            Data.getData();
+
+            Classes_Objects Data_1 = new Classes_Objects(1, "Check");
+            Data_1.getData();
+
+            Classes_Objects Data_2 = new Classes_Objects(2);
+            Data_2.getData();
+
+            Classes_Objects.setSchool();
+
+            Console.WriteLine(Classes_Objects.SCHOOL);
+
+            #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            //GET();
+
+            //Console.WriteLine("Overpass Async");
+            //Console.ReadKey();
+            //FileStream fs = new FileStream("test.txt", FileMode.Create, FileAccess.Write);
+
+            //byte[] buffer = { 100, 101 };
+
+            //fs.Position = 1;
+
+            //fs.Write(buffer, 0, buffer.Length);
+
+            //fs.Close();
+
+            //FileStream ws = new FileStream("test.txt", FileMode.Open, FileAccess.Read);
+
+            //byte[] r = new byte[ws.Length];
+
+            //ws.Read(r, 0, r.Length);
+
+            //Console.WriteLine(r);
+
+            //FileStream Fs = new FileStream("test.txt", FileMode.Open, FileAccess.Read);
+            //byte[] dataToRead = new byte[Fs.Length];
+            //Console.WriteLine(dataToRead.Length);
+            //int totalBytesRead = 0;
+            //int chunkBytesRead = 10;
+
+            //while(totalBytesRead < Fs.Length && chunkBytesRead > 0)
+            //{
+            //    chunkBytesRead = Fs.Read(dataToRead, totalBytesRead, chunkBytesRead);
+            //    Console.WriteLine(chunkBytesRead);
+            //}
+
+            //GZipStream gzOut = new GZipStream(File.Create("data.zip"), CompressionMode.Compress);
+            //StreamWriter SW = new StreamWriter(gzOut);
+
+            //for(int i=0;i<10;i++)
+            //{
+            //    SW.Write($"LEARNING {i}");
+            //}
+
+            //SW.Close();
+
+            //GZipStream gzIn = new GZipStream(File.OpenRead("data.zip"), CompressionMode.Decompress);
+
+            //StreamReader SR = new StreamReader(gzIn);
+            //Console.WriteLine(SR.ReadToEnd());
+
+
+            //FileInfo F = new FileInfo("data.zip");
+            //Console.WriteLine(F.Length);
+            //await HttpClientLearning.getData();
+
+            //FileStream F = new FileStream("check.txt", FileMode.Open, FileAccess.Read);
+            //Console.WriteLine("Appending Data");
+            //StreamWriter S = new StreamWriter(F);
+            //S.WriteLine("Check its Working\nNew Line");
+            //S.Flush();
+            //S.Close();
+
+            //byte[] buffer = new byte[F.Length];
+            //buffer = Encoding.UTF8.GetBytes("Bytes Conversion");
+
+            //F.Write(buffer, 0, buffer.Length);
+            //F.Flush();
+            //F.Close();
+
+
+            //int bytesCount = F.Read(buffer, 0, buffer.Length);
+            //Console.WriteLine(Encoding.ASCII.GetString(buffer, 0, buffer.Length));
+
+            //StreamReader c = new StreamReader(F);
+            //Console.WriteLine(c.ReadToEnd());
+
+            //DirectoryInfo D = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
+            //FileInfo[] F = D.GetFiles();
+
+            //DirectoryInfo[] dir = D.GetDirectories();
+
+            //foreach(var e in dir)
+            //{
+            //    Console.WriteLine(e.FullName);
+            //}
+
+            //foreach(var e in F)
+            //{
+            //    Console.WriteLine(e.FullName);
+            //}
+
+            //FileInfo F = new FileInfo("text.txt");
+
+            //Console.WriteLine(F.Name);
+            // Console.WriteLine(F.Length);
+            //Console.WriteLine(F.FullName);
+
+            //File.Copy("text.txt", "test.txt");
+
+            //DirectoryInfo d = new DirectoryInfo(AppDomain.CurrentDomain.BaseDirectory);
+
+            //Console.WriteLine(d.FullName);
+
+            //Console.WriteLine(d.Parent);
+
+            //Directory.CreateDirectory(AppDomain.CurrentDomain.BaseDirectory+"ParallelFiles/P/P/P");
+            //StreamLearningY.WriteFile();
+            //StreamLearningY.ReadFile();
+
+
+            //File.WriteAllText("hello.txt", "Check");
+
+            //Console.WriteLine(File.ReadAllText("hello.txt"));
+
+
+            //MemoryStream M = new MemoryStream();
+            //byte[] buffer = new byte[1024];
+            //buffer[0] = 1;
+            //M.Write(buffer, 0, 100);
+            //Console.WriteLine(M.Read(buffer, 0, 100));
+            //HttpClientLearning H = new HttpClientLearning();
+            //await H.getData();
+
+
+
+            //ParallelStreaming.Check();
 
 
             //int length = 10;
